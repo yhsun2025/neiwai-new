@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NEIWAI — A Second Skin, Reimagined</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -16,8 +17,8 @@
   --bark:  #7A6A58;
   --slate: #2C2825;
   --white: #FDFCF9;
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans:  'Jost', sans-serif;
+  --serif: 'Optima', 'Optima Nova LT Pro', 'CenturyGothic', 'Century Gothic', 'AppleGothic', sans-serif;
+  --sans:  'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 html { scroll-behavior: smooth; }
@@ -26,9 +27,9 @@ body {
   background: var(--white);
   color: var(--slate);
   font-family: var(--sans);
-  font-weight: 300;
-  font-size: 14px;
-  letter-spacing: 0.02em;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.01em;
   overflow-x: hidden;
 }
 
@@ -81,9 +82,9 @@ nav {
 .logo {
   text-align: center;
   font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 300;
-  letter-spacing: .38em;
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: .30em;
   text-transform: uppercase;
 }
 
@@ -157,11 +158,12 @@ nav {
 
 .hero-title {
   font-family: var(--serif);
-  font-size: clamp(52px, 6vw, 88px);
-  font-weight: 300;
-  line-height: 1.0;
+  font-size: clamp(48px, 5.5vw, 82px);
+  font-weight: 400;
+  line-height: 1.05;
   color: var(--oat);
   margin-bottom: 24px;
+  letter-spacing: .01em;
 }
 .hero-title em { font-style: italic; color: var(--stone); }
 
@@ -179,11 +181,12 @@ nav {
   padding: 13px 36px;
   border: 1px solid currentColor;
   font-size: 10px;
-  letter-spacing: .2em;
+  letter-spacing: .14em;
   text-transform: uppercase;
   transition: all .3s;
   align-self: flex-start;
   cursor: pointer;
+  font-weight: 400;
 }
 .btn-light {
   color: var(--oat);
@@ -240,9 +243,9 @@ nav {
 }
 .philosophy-quote {
   font-family: var(--serif);
-  font-size: clamp(22px, 3vw, 38px);
-  font-weight: 300;
-  line-height: 1.52;
+  font-size: clamp(20px, 2.6vw, 34px);
+  font-weight: 400;
+  line-height: 1.55;
   color: var(--slate);
   max-width: 740px;
   margin: 0 auto 36px;
@@ -276,8 +279,8 @@ nav {
 }
 .section-title {
   font-family: var(--serif);
-  font-size: 34px; font-weight: 300;
-  letter-spacing: .04em;
+  font-size: 30px; font-weight: 400;
+  letter-spacing: .02em;
 }
 .link-arrow {
   font-size: 10px; letter-spacing: .16em;
@@ -342,8 +345,8 @@ nav {
 }
 .feat-title {
   font-family: var(--serif);
-  font-size: clamp(24px, 2.4vw, 36px);
-  font-weight: 300; line-height: 1.15;
+  font-size: clamp(22px, 2.2vw, 34px);
+  font-weight: 400; line-height: 1.15;
   color: var(--slate); margin-bottom: 18px;
 }
 .feat-desc {
@@ -362,7 +365,7 @@ nav {
 }
 .feat-price {
   font-family: var(--serif);
-  font-size: 20px; font-weight: 300;
+  font-size: 18px; font-weight: 400;
   color: var(--slate); margin-bottom: 22px;
 }
 
@@ -436,11 +439,11 @@ nav {
 }
 .ed-title {
   font-family: var(--serif);
-  font-size: 24px; font-weight: 300; line-height: 1.15;
+  font-size: 22px; font-weight: 400; line-height: 1.15;
 }
 .ed-title-lg {
   font-family: var(--serif);
-  font-size: 40px; font-weight: 300; line-height: 1.05;
+  font-size: 38px; font-weight: 400; line-height: 1.05;
 }
 
 /* ════════════════════════════════
@@ -489,7 +492,7 @@ nav {
 }
 .product-price {
   font-family: var(--serif);
-  font-size: 16px; font-weight: 300; color: var(--slate);
+  font-size: 15px; font-weight: 400; color: var(--slate);
 }
 
 /* ════════════════════════════════
@@ -510,8 +513,8 @@ nav {
 }
 .brand-philosophy-quote {
   font-family: var(--serif);
-  font-size: clamp(24px, 3.2vw, 42px);
-  font-weight: 300; line-height: 1.48;
+  font-size: clamp(22px, 2.8vw, 38px);
+  font-weight: 400; line-height: 1.5;
   color: var(--oat); max-width: 800px;
   margin: 0 auto 36px;
   font-style: italic;
@@ -536,8 +539,8 @@ nav {
 }
 .completes-title {
   font-family: var(--serif);
-  font-size: 34px; font-weight: 300;
-  letter-spacing: .04em; color: var(--slate);
+  font-size: 30px; font-weight: 400;
+  letter-spacing: .02em; color: var(--slate);
   margin-bottom: 10px;
 }
 .completes-sub {
@@ -578,7 +581,7 @@ nav {
 }
 .complete-name {
   font-family: var(--serif);
-  font-size: 22px; font-weight: 300;
+  font-size: 20px; font-weight: 400;
   line-height: 1.2; color: var(--slate); margin-bottom: 10px;
 }
 .complete-tag {
@@ -587,7 +590,7 @@ nav {
 }
 .complete-price {
   font-family: var(--serif);
-  font-size: 18px; font-weight: 300; margin-bottom: 24px;
+  font-size: 17px; font-weight: 400; margin-bottom: 24px;
 }
 
 /* ════════════════════════════════
@@ -615,8 +618,8 @@ nav {
 }
 .t-text {
   font-family: var(--serif);
-  font-size: 19px; font-weight: 300;
-  font-style: italic; line-height: 1.7;
+  font-size: 17px; font-weight: 400;
+  font-style: italic; line-height: 1.75;
   color: var(--oat); margin-bottom: 24px;
 }
 .t-attr {
@@ -670,7 +673,7 @@ nav {
 }
 .fabric-badge-name {
   font-family: var(--serif);
-  font-size: 18px; color: var(--slate); font-weight: 300;
+  font-size: 17px; color: var(--slate); font-weight: 400;
 }
 
 .materials-content {}
@@ -686,8 +689,8 @@ nav {
 }
 .mat-title {
   font-family: var(--serif);
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 300; line-height: 1.12;
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 400; line-height: 1.12;
   color: var(--slate); margin-bottom: 28px;
 }
 .mat-title em { font-style: italic; color: var(--bark); }
@@ -704,7 +707,7 @@ nav {
 .spec-item { border-top: 1px solid var(--sand); padding-top: 18px; }
 .spec-value {
   font-family: var(--serif);
-  font-size: 28px; font-weight: 300;
+  font-size: 26px; font-weight: 400;
   color: var(--slate); margin-bottom: 5px; line-height: 1;
 }
 .spec-label {
@@ -799,8 +802,8 @@ footer {
 }
 .footer-brand {
   font-family: var(--serif);
-  font-size: 24px; font-weight: 300;
-  letter-spacing: .3em; text-transform: uppercase;
+  font-size: 22px; font-weight: 400;
+  letter-spacing: .26em; text-transform: uppercase;
   margin-bottom: 16px;
 }
 .footer-tagline {
@@ -946,7 +949,7 @@ footer {
           <li>Thin adjustable straps — invisible under anything</li>
         </ul>
         <div class="feat-price">$39</div>
-        <a href="/bras-barely-zero-strap-bra" class="btn-outline btn-dark">Discover →</a>
+        <a href="/bras/barely-zero-strap-bra" class="btn-outline btn-dark">Discover →</a>
       </div>
     </div>
 
@@ -969,7 +972,7 @@ footer {
           <li>Seamless side panels</li>
         </ul>
         <div class="feat-price">$59</div>
-        <a href="/bras-barely-zero-scallop-bra" class="btn-outline btn-dark">Discover →</a>
+        <a href="/bras/barely-zero-scallop-bra" class="btn-outline btn-dark">Discover →</a>
       </div>
     </div>
 
@@ -983,7 +986,7 @@ footer {
 <div class="editorial-wrap" style="margin-top: 100px;">
   <div class="section-header">
     <h2 class="section-title">This Season</h2>
-    <a href="/collections-all" class="link-arrow">View All →</a>
+    <a href="/collections/all" class="link-arrow">View All →</a>
   </div>
 </div>
 
@@ -1002,7 +1005,7 @@ footer {
 
   <div class="editorial-secondary">
 
-    <a href="/collections-pure-comfort" class="editorial-card">
+    <a href="/collections/pure-comfort" class="editorial-card">
       <img
         src="https://neiwai.life/cdn/shop/files/20230408-NEIWAI7738.jpg?v=1694803212&width=800"
         alt="Pure Comfort"
@@ -1033,7 +1036,7 @@ footer {
 <section class="grid-section">
   <div class="section-header" style="padding:0;">
     <h2 class="section-title">The Edit</h2>
-    <a href="/collections-all" class="link-arrow">View all →</a>
+    <a href="/collections/all" class="link-arrow">View all →</a>
   </div>
 
   <div class="product-grid">
@@ -1123,7 +1126,7 @@ footer {
         <div class="complete-name">Barely Zero Low Waist Brief</div>
         <div class="complete-tag">The brief that disappears.</div>
         <div class="complete-price">$15</div>
-        <a href="/briefs-barely-zero-low-waist-brief" class="btn-outline btn-dark">Shop Brief</a>
+        <a href="/briefs/barely-zero-low-waist-brief" class="btn-outline btn-dark">Shop Brief</a>
       </div>
     </div>
 
@@ -1139,7 +1142,7 @@ footer {
         <div class="complete-name">Barely Zero Flow Leggings</div>
         <div class="complete-tag">Compression without constriction.</div>
         <div class="complete-price">$39</div>
-        <a href="/leggings-barely-zero-flow-leggings" class="btn-outline btn-dark">Shop Leggings</a>
+        <a href="/leggings/barely-zero-flow-leggings" class="btn-outline btn-dark">Shop Leggings</a>
       </div>
     </div>
   </div>
@@ -1279,8 +1282,8 @@ footer {
     <div class="footer-col">
       <div class="footer-col-title">Our World</div>
       <a href="https://neiwai.life/pages/our-story">Our Philosophy</a>
-      <a href="/our-world-atelier">The Atelier</a>
-      <a href="/our-world-journal">Journal</a>
+      <a href="/our-world/atelier">The Atelier</a>
+      <a href="/our-world/journal">Journal</a>
       <a href="https://neiwai.life/pages/press">Careers</a>
     </div>
     <div class="footer-col">
