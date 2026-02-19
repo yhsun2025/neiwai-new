@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our World — NEIWAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --oat:   #F5F0E8;
+  --sand:  #DDD5C4;
+  --stone: #C4B9A8;
+  --bark:  #7A6A58;
+  --slate: #2C2825;
+  --white: #FDFCF9;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Jost', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white); color: var(--slate);
+  font-family: var(--sans); font-weight: 300;
+  font-size: 14px; letter-spacing: 0.02em;
+  overflow-x: hidden;
+}
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a   { text-decoration: none; color: inherit; }
+
+/* ANN */
+.ann {
+  background: var(--slate); color: var(--oat);
+  text-align: center; padding: 10px 24px;
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+}
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--white); border-bottom: 1px solid var(--sand);
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; padding: 0 48px; height: 64px;
+}
+.nav-left  { display: flex; gap: 32px; }
+.nav-right { display: flex; justify-content: flex-end; gap: 28px; align-items: center; }
+.nav-left a, .nav-right a {
+  font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; opacity: .65; transition: opacity .2s;
+}
+.nav-left a:hover, .nav-right a:hover { opacity: 1; }
+.logo {
+  text-align: center; font-family: var(--serif);
+  font-size: 20px; font-weight: 300;
+  letter-spacing: .38em; text-transform: uppercase;
+}
+.cart-btn {
+  display: flex; align-items: center; gap: 6px;
+  cursor: pointer; opacity: .65; transition: opacity .2s;
+  background: none; border: none;
+  font-family: var(--sans); font-size: 11px;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--slate);
+}
+.cart-btn:hover { opacity: 1; }
+
+/* PAGE HERO */
+.page-hero {
+  background: var(--oat);
+  padding: 100px 80px 80px;
+  border-bottom: 1px solid var(--sand);
+}
+.page-hero-eyebrow {
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--bark);
+  margin-bottom: 20px; opacity: .8;
+}
+.page-hero-title {
+  font-family: var(--serif);
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 300; line-height: 1.05; color: var(--slate);
+}
+.page-hero-title em { font-style: italic; color: var(--bark); }
+.page-hero-sub {
+  font-size: 13px; line-height: 1.9; color: var(--slate);
+  opacity: .55; max-width: 480px; margin-top: 24px;
+}
+
+/* PRODUCT GRID */
+.collection-section {
+  padding: 80px 80px 120px;
+}
+.section-header {
+  display: flex; align-items: baseline;
+  justify-content: space-between; margin-bottom: 44px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 300; letter-spacing: .04em;
+}
+.link-arrow {
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--bark); border-bottom: 1px solid var(--stone);
+  padding-bottom: 2px; transition: border-color .2s;
+}
+.link-arrow:hover { border-color: var(--bark); }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+.product-card {
+  background: var(--white); overflow: hidden; cursor: pointer;
+}
+.product-card-img {
+  aspect-ratio: 3/4; overflow: hidden; position: relative;
+}
+.product-card-img img {
+  height: 100%; object-position: center top;
+  transition: transform .65s ease;
+}
+.product-card:hover .product-card-img img { transform: scale(1.04); }
+.quick-add {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--slate); color: var(--oat);
+  text-align: center; padding: 13px;
+  font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+  transform: translateY(100%); transition: transform .3s ease;
+}
+.product-card:hover .quick-add { transform: translateY(0); }
+.product-info { padding: 16px 18px 26px; }
+.product-name {
+  font-size: 12px; letter-spacing: .04em; color: var(--slate);
+  margin-bottom: 5px; line-height: 1.5;
+}
+.product-sub {
+  font-size: 10px; color: var(--bark);
+  opacity: .6; letter-spacing: .05em; margin-bottom: 8px;
+}
+.product-price {
+  font-family: var(--serif);
+  font-size: 16px; font-weight: 300; color: var(--slate);
+}
+
+/* PRODUCT DETAIL */
+.product-detail {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3px; min-height: 80vh;
+}
+.detail-img { overflow: hidden; }
+.detail-img img { height: 100%; object-position: center top; }
+.detail-info {
+  padding: 80px 72px;
+  display: flex; flex-direction: column; justify-content: center;
+  background: var(--oat);
+}
+.detail-eyebrow {
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--bark); opacity: .75; margin-bottom: 16px;
+}
+.detail-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 300; line-height: 1.1; color: var(--slate); margin-bottom: 20px;
+}
+.detail-price {
+  font-family: var(--serif);
+  font-size: 26px; font-weight: 300; margin-bottom: 32px;
+}
+.detail-desc {
+  font-size: 13px; line-height: 1.95; color: var(--slate);
+  opacity: .6; margin-bottom: 36px; max-width: 400px;
+}
+.detail-features { list-style: none; margin-bottom: 40px; }
+.detail-features li {
+  font-size: 12px; color: var(--slate); opacity: .55;
+  padding: 10px 0; border-top: 1px solid var(--sand); line-height: 1.5;
+}
+.btn-dark {
+  display: inline-block; padding: 15px 44px;
+  border: 1px solid var(--slate);
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--slate); transition: all .3s; cursor: pointer;
+  background: none; font-family: var(--sans); align-self: flex-start;
+}
+.btn-dark:hover { background: var(--slate); color: var(--oat); }
+
+/* EDITORIAL / JOURNAL */
+.editorial-page { padding: 80px 80px 120px; }
+.editorial-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; margin-top: 44px;
+}
+.editorial-item { cursor: pointer; overflow: hidden; }
+.editorial-item-img { aspect-ratio: 4/5; overflow: hidden; }
+.editorial-item-img img {
+  height: 100%; object-position: center top;
+  transition: transform .65s ease;
+}
+.editorial-item:hover .editorial-item-img img { transform: scale(1.04); }
+.editorial-item-info { padding: 20px 0; border-top: 1px solid var(--sand); margin-top: 2px; }
+.editorial-item-tag {
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--bark); opacity: .65; margin-bottom: 10px;
+}
+.editorial-item-title {
+  font-family: var(--serif); font-size: 20px; font-weight: 300;
+  line-height: 1.3; color: var(--slate); margin-bottom: 10px;
+}
+.editorial-item-date {
+  font-size: 10px; color: var(--slate); opacity: .4; letter-spacing: .06em;
+}
+
+/* ABOUT / WORLD */
+.about-section {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px; min-height: 70vh;
+}
+.about-img { overflow: hidden; }
+.about-img img { height: 100%; object-position: center top; }
+.about-content {
+  padding: 80px 72px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.about-eyebrow {
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--bark); margin-bottom: 24px;
+}
+.about-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 300; line-height: 1.15; color: var(--slate); margin-bottom: 28px;
+}
+.about-title em { font-style: italic; color: var(--bark); }
+.about-body {
+  font-size: 13px; line-height: 1.95; color: var(--slate);
+  opacity: .6; max-width: 400px; margin-bottom: 36px;
+}
+
+/* FOOTER */
+footer {
+  background: var(--slate); color: var(--oat);
+  padding: 88px 80px 44px;
+}
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px; margin-bottom: 72px; padding-bottom: 60px;
+  border-bottom: 1px solid rgba(196,185,168,.1);
+}
+.footer-brand {
+  font-family: var(--serif); font-size: 24px; font-weight: 300;
+  letter-spacing: .3em; text-transform: uppercase; margin-bottom: 16px;
+}
+.footer-tagline {
+  font-size: 12px; line-height: 1.85; opacity: .35; max-width: 200px;
+}
+.footer-col-title {
+  font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--stone); margin-bottom: 24px;
+}
+.footer-col a {
+  display: block; font-size: 12px; opacity: .42;
+  margin-bottom: 12px; letter-spacing: .04em; transition: opacity .2s;
+}
+.footer-col a:hover { opacity: .85; }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-size: 10px; opacity: .24; letter-spacing: .06em; }
+.footer-social { display: flex; gap: 22px; }
+.footer-social a {
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  opacity: .36; transition: opacity .2s;
+}
+.footer-social a:hover { opacity: .85; }
+
+
+</style>
+</head>
+<body>
+
+<div class="ann">Complimentary U.S. shipping on orders above $99</div>
+<nav>
+  <div class="nav-left">
+    <a href="/bras">Bras</a>
+    <a href="/briefs">Briefs</a>
+    <a href="/leggings">Leggings</a>
+  </div>
+  <a href="/" class="logo">Neiwai</a>
+  <div class="nav-right">
+    <a href="/our-world">Our World</a>
+    <button class="cart-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Bag
+    </button>
+  </div>
+</nav>
+
+
+<div class="page-hero">
+  <p class="page-hero-eyebrow">Brand</p>
+  <h1 class="page-hero-title">Our <em>World</em></h1>
+  <p class="page-hero-sub">The thinking behind the making. Philosophy, craft, and the choices that shape every piece.</p>
+</div>
+<section class="about-section">
+  <div class="about-img">
+    <img src="https://neiwai.life/cdn/shop/files/2025-08-28NEIWAI16364_2087098d-adca-42e7-89da-ef4c3e9f3af5.jpg?v=1762149203&width=1600" alt="NEIWAI Philosophy">
+  </div>
+  <div class="about-content">
+    <p class="about-eyebrow">Our Philosophy</p>
+    <h2 class="about-title">The best clothes are the ones you <em>forget</em> you're wearing.</h2>
+    <p class="about-body">NEIWAI was founded on a simple belief: that intimates should serve the wearer — not the other way around. Every decision we make starts with the body: how it moves, breathes, and changes through the day.</p>
+    <a href="/our-world-atelier" class="link-arrow">The Atelier →</a>
+  </div>
+</section>
+<section class="about-section" style="background:var(--oat);">
+  <div class="about-content" style="background:var(--oat);">
+    <p class="about-eyebrow">Materials</p>
+    <h2 class="about-title">Not better cotton.<br><em>Entirely different.</em></h2>
+    <p class="about-body">CloudFit nylon is developed from scratch — a proprietary blend with 38mm fibre length, OEKO-Tex certified, tested across 200 washes for consistency. It starts soft and stays that way.</p>
+    <a href="/our-world-atelier" class="link-arrow">Read more →</a>
+  </div>
+  <div class="about-img">
+    <img src="https://neiwai.life/cdn/shop/files/20230408-NEIWAI5607.jpg?v=1688583183&width=1600" alt="NEIWAI Materials">
+  </div>
+</section>
+<section class="editorial-page">
+  <div class="section-header">
+    <span class="section-title">From the Journal</span>
+    <a href="/our-world-journal" class="link-arrow">All Stories →</a>
+  </div>
+  <div class="editorial-grid">
+    <div class="editorial-item">
+      <div class="editorial-item-img">
+        <img src="https://neiwai.life/cdn/shop/files/Copyof20240531_65576-min_9ceae961-9c14-4def-b14a-858a29288c46.jpg?v=1728005978&width=800" alt="">
+      </div>
+      <div class="editorial-item-info">
+        <div class="editorial-item-tag">Craft</div>
+        <div class="editorial-item-title">Why we only work with long-staple fibres</div>
+        <div class="editorial-item-date">January 2026</div>
+      </div>
+    </div>
+    <div class="editorial-item">
+      <div class="editorial-item-img">
+        <img src="https://neiwai.life/cdn/shop/files/20230408-NEIWAI7738.jpg?v=1694803212&width=800" alt="">
+      </div>
+      <div class="editorial-item-info">
+        <div class="editorial-item-tag">Philosophy</div>
+        <div class="editorial-item-title">The space between — how NEIWAI began</div>
+        <div class="editorial-item-date">November 2025</div>
+      </div>
+    </div>
+    <div class="editorial-item">
+      <div class="editorial-item-img">
+        <img src="https://neiwai.life/cdn/shop/files/2025-08-28NEIWAI158792.jpg?v=1764127456&width=800" alt="">
+      </div>
+      <div class="editorial-item-info">
+        <div class="editorial-item-tag">Design</div>
+        <div class="editorial-item-title">Designing the Scallop: structure without weight</div>
+        <div class="editorial-item-date">September 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Neiwai</div>
+      <p class="footer-tagline">A second skin, reimagined. Engineered for invisible comfort.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Our World</div>
+      <a href="/our-world">Our Philosophy</a>
+      <a href="/our-world-atelier">The Atelier</a>
+      <a href="/our-world-journal">Journal</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Customer Care</div>
+      <a href="https://neiwai.life/pages/shipping-returns">Shipping &amp; Returns</a>
+      <a href="https://neiwai.life/pages/size-guide">Size Guide</a>
+      <a href="https://neiwai.life/pages/contact-us">Contact Us</a>
+      <a href="https://neiwai.life/pages/faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Follow</div>
+      <a href="https://www.instagram.com/neiwaiofficial/">Instagram</a>
+      <a href="https://www.pinterest.ca/neiwaiofficial/">Pinterest</a>
+      <a href="https://www.tiktok.com/@neiwai.life">TikTok</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 NEIWAI. All rights reserved.</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/neiwaiofficial/">Instagram</a>
+      <a href="https://www.pinterest.ca/neiwaiofficial/">Pinterest</a>
+      <a href="https://www.tiktok.com/@neiwai.life">TikTok</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
