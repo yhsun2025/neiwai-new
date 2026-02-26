@@ -6,844 +6,426 @@
 <title>NEIWAI — A Second Skin, Reimagined</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
+/* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --oat:   #F5F0E8;
-  --sand:  #DDD5C4;
-  --stone: #C4B9A8;
-  --bark:  #7A6A58;
-  --slate: #2C2825;
-  --white: #FDFCF9;
-  --serif: 'Optima', 'Optima Nova LT Pro', 'CenturyGothic', 'Century Gothic', 'AppleGothic', sans-serif;
-  --sans:  'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  --black:  #1c1c1c;
+  --gray:   #767676;
+  --lgray:  #9e9e9e;
+  --border: #e3e3e3;
+  --bg:     #f5f5f5;
+  --white:  #ffffff;
+  --serif:  'Optima', 'Optima Nova LT Pro', 'CenturyGothic', 'Century Gothic', 'AppleGothic', sans-serif;
+  --sans:   'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
   background: var(--white);
-  color: var(--slate);
+  color: var(--black);
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 13px;
-  letter-spacing: 0.01em;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 img { display: block; width: 100%; height: 100%; object-fit: cover; }
 a   { text-decoration: none; color: inherit; }
 
-/* ════════════════════════════════
-   §0  ANNOUNCEMENT
-════════════════════════════════ */
+/* ── ANNOUNCEMENT BAR ── */
 .ann {
-  background: var(--slate);
-  color: var(--oat);
+  background: var(--black);
+  color: var(--white);
   text-align: center;
-  padding: 10px 24px;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  padding: 9px 24px;
+  font-size: 12px;
+  letter-spacing: .04em;
 }
 
-/* ════════════════════════════════
-   §1  NAV — new design
-   Logo centred, left/right links,
-   cart icon + text
-════════════════════════════════ */
+/* ── NAV ── */
 nav {
-  position: sticky;
-  top: 0;
-  z-index: 200;
+  position: sticky; top: 0; z-index: 200;
   background: var(--white);
-  border-bottom: 1px solid var(--sand);
+  border-bottom: 1px solid var(--border);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 0 48px;
-  height: 64px;
+  padding: 0 40px;
+  height: 58px;
 }
-
-.nav-left  { display: flex; gap: 32px; }
-.nav-right { display: flex; justify-content: flex-end; gap: 28px; align-items: center; }
-
+.nav-left  { display: flex; gap: 28px; }
+.nav-right { display: flex; justify-content: flex-end; gap: 24px; align-items: center; }
 .nav-left a, .nav-right a {
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: .65;
-  transition: opacity .2s;
+  font-size: 13px; color: var(--black);
+  font-family: var(--sans);
+  transition: color .15s;
 }
-.nav-left a:hover, .nav-right a:hover { opacity: 1; }
-
+.nav-left a:hover, .nav-right a:hover { color: var(--gray); }
 .logo {
   text-align: center;
   font-family: var(--serif);
-  font-size: 19px;
-  font-weight: 400;
-  letter-spacing: .30em;
-  text-transform: uppercase;
+  font-size: 18px; font-weight: 400;
+  letter-spacing: .28em; text-transform: uppercase;
 }
-
 .cart-btn {
   display: flex; align-items: center; gap: 6px;
-  cursor: pointer; opacity: .65; transition: opacity .2s;
+  cursor: pointer; transition: color .15s;
   background: none; border: none;
-  font-family: var(--sans); font-size: 11px;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--slate);
+  font-family: var(--sans); font-size: 13px; color: var(--black);
 }
-.cart-btn:hover { opacity: 1; }
+.cart-btn:hover { color: var(--gray); }
 
-/* ════════════════════════════════
-   §2  HERO — original design
-   Full-width image, text overlaid
-   bottom-left on dark gradient
-════════════════════════════════ */
+/* ── HERO ── */
 .hero-orig {
   position: relative;
-  height: calc(100svh - 104px);
-  min-height: 640px;
-  overflow: hidden;
+  height: calc(100svh - 94px);
+  min-height: 560px; overflow: hidden;
 }
-
 .hero-orig > img {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-position: center top;
-  transition: transform 10s ease;
+  object-position: center 20%;
 }
-.hero-orig:hover > img { transform: scale(1.03); }
-
-.hero-orig::before {
+.hero-orig::after {
   content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    160deg,
-    transparent 35%,
-    rgba(44,40,37,.55) 100%
-  );
-  z-index: 1;
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.5) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
 }
-
 .hero-orig-content {
-  position: absolute;
-  bottom: 72px;
-  left: 80px;
-  z-index: 2;
-  max-width: 520px;
+  position: absolute; bottom: 56px; left: 48px;
+  z-index: 2; max-width: 500px;
 }
-
 .hero-eyebrow {
-  font-size: 10px;
-  letter-spacing: .26em;
-  text-transform: uppercase;
-  color: var(--oat);
-  opacity: .72;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.75);
+  font-family: var(--sans);
+  margin-bottom: 12px;
 }
-.hero-eyebrow::before {
-  content: '';
-  display: block; width: 28px; height: 1px;
-  background: var(--oat); opacity: .5;
-}
-
 .hero-title {
+  font-size: clamp(38px, 5vw, 66px);
+  font-weight: 400; line-height: 1.08;
+  color: #fff; margin-bottom: 16px;
   font-family: var(--serif);
-  font-size: clamp(48px, 5.5vw, 82px);
-  font-weight: 400;
-  line-height: 1.05;
-  color: var(--oat);
-  margin-bottom: 24px;
-  letter-spacing: .01em;
-}
-.hero-title em { font-style: italic; color: var(--stone); }
-
-.hero-body {
-  font-size: 13px;
-  line-height: 1.85;
-  color: var(--oat);
-  opacity: .65;
-  max-width: 380px;
-  margin-bottom: 40px;
-}
-
-.btn-outline {
-  display: inline-block;
-  padding: 13px 36px;
-  border: 1px solid currentColor;
-  font-size: 10px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  transition: all .3s;
-  align-self: flex-start;
-  cursor: pointer;
-  font-weight: 400;
-}
-.btn-light {
-  color: var(--oat);
-  border-color: rgba(245,240,232,.55);
-}
-.btn-light:hover { background: var(--oat); color: var(--slate); }
-
-.btn-dark {
-  color: var(--slate);
-  border-color: var(--slate);
-}
-.btn-dark:hover { background: var(--slate); color: var(--oat); }
-
-/* scroll hint in hero */
-.scroll-hint {
-  position: absolute;
-  bottom: 36px; right: 80px;
-  z-index: 2;
-  display: flex; align-items: center; gap: 12px;
-  font-size: 9px; letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--oat); opacity: .32;
-}
-.scroll-line {
-  width: 40px; height: 1px;
-  background: var(--oat);
-  position: relative; overflow: hidden;
-}
-.scroll-line::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: var(--stone);
-  animation: march 2.2s ease-in-out infinite;
-}
-@keyframes march { to { left: 100%; } }
-
-/* ════════════════════════════════
-   §3  SHORT PARAGRAPH — new design
-   Centred, large serif quote,
-   vertical rule above, tag pills
-════════════════════════════════ */
-.philosophy {
-  padding: 110px 80px;
-  text-align: center;
-  background: var(--white);
-}
-.philosophy::before {
-  content: '';
-  display: block; width: 1px; height: 60px;
-  background: var(--sand);
-  margin: 0 auto 64px;
-}
-.philosophy-quote {
-  font-family: var(--serif);
-  font-size: clamp(20px, 2.6vw, 34px);
-  font-weight: 400;
-  line-height: 1.55;
-  color: var(--slate);
-  max-width: 740px;
-  margin: 0 auto 36px;
-}
-.philosophy-quote em { font-style: italic; color: var(--bark); }
-
-.philosophy-pills {
-  display: flex; justify-content: center;
-  gap: 10px; flex-wrap: wrap;
-}
-.pill {
-  font-size: 10px; letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--bark); opacity: .65;
-  border: 1px solid var(--stone);
-  padding: 6px 18px;
-}
-
-/* ════════════════════════════════
-   §4  FEATURED — new design
-   2-column spotlight with image
-   left + editorial info right
-════════════════════════════════ */
-.featured-wrap {
-  padding: 0 80px 4px;
-}
-.section-header {
-  display: flex; align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 28px;
-}
-.section-title {
-  font-family: var(--serif);
-  font-size: 30px; font-weight: 400;
   letter-spacing: .02em;
 }
+.hero-title em { font-style: italic; }
+.hero-body {
+  font-size: 14px; line-height: 1.7;
+  color: rgba(255,255,255,.82);
+  font-family: var(--sans);
+  max-width: 360px; margin-bottom: 28px;
+}
+/* Buttons */
+.btn-outline {
+  display: inline-block; padding: 12px 32px;
+  border: 1.5px solid currentColor;
+  font-size: 11px; font-weight: 600;
+  font-family: var(--sans);
+  letter-spacing: .1em; text-transform: uppercase;
+  transition: background .2s, color .2s; cursor: pointer;
+}
+.btn-light { color: #fff; }
+.btn-light:hover { background: #fff; color: var(--black); }
+.btn-dark  { color: var(--black); }
+.btn-dark:hover { background: var(--black); color: #fff; }
+.btn-solid {
+  display: inline-block; padding: 13px 36px;
+  background: var(--black); color: #fff;
+  font-size: 11px; font-weight: 600;
+  font-family: var(--sans);
+  letter-spacing: .1em; text-transform: uppercase;
+  transition: background .2s; cursor: pointer;
+  border: none;
+}
+.btn-solid:hover { background: #333; }
+.btn-text {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  color: var(--black); letter-spacing: .04em;
+  background: none; border: none; cursor: pointer; padding: 0;
+  transition: gap .2s, opacity .15s;
+}
+.btn-text:hover { gap: 12px; opacity: .65; }
+.scroll-hint { display: none; }
+
+/* ── SECTION UTILITIES ── */
+.section-header {
+  display: flex; align-items: baseline;
+  justify-content: space-between; margin-bottom: 28px;
+}
+.section-title {
+  font-size: clamp(28px, 3vw, 42px); font-weight: 400;
+  font-family: var(--serif);
+  letter-spacing: .03em; color: var(--black);
+  line-height: 1.1;
+}
+.section-sub { font-size: 13px; color: var(--gray); margin-top: 4px; font-family: var(--sans); }
 .link-arrow {
-  font-size: 10px; letter-spacing: .16em;
-  text-transform: uppercase; color: var(--bark);
-  border-bottom: 1px solid var(--stone);
-  padding-bottom: 2px; transition: border-color .2s;
+  font-size: 12px; color: var(--black); font-weight: 500;
+  font-family: var(--sans);
+  text-decoration: underline; text-underline-offset: 3px;
+  white-space: nowrap; transition: color .15s;
 }
-.link-arrow:hover { border-color: var(--bark); }
+.link-arrow:hover { color: var(--gray); }
 
-.featured-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3px;
+/* ── §2 BRAND PHILOSOPHY ── */
+.philosophy {
+  padding: 72px 48px; text-align: center;
+  background: var(--bg);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.philosophy::before { display: none; }
+.philosophy-quote {
+  font-size: clamp(18px, 2.1vw, 26px);
+  font-weight: 400; font-style: italic;
+  font-family: var(--serif);
+  line-height: 1.65; color: var(--black);
+  max-width: 680px; margin: 0 auto 28px;
+}
+.philosophy-quote em { font-style: normal; font-weight: 400; font-family: var(--serif); letter-spacing: .02em; }
+.philosophy-pills { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.pill {
+  font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--black); border: 1px solid var(--border);
+  padding: 5px 14px; background: var(--white);
+  font-family: var(--sans);
 }
 
+/* ── §3 MUST HAVES ── */
+.must-haves { padding: 56px 48px; }
+.must-haves-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .feat-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3px;
-  min-height: 560px;
-  overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--border);
 }
-
-.feat-img {
-  overflow: hidden;
-  position: relative;
-}
+.feat-img { aspect-ratio: 3/4; overflow: hidden; }
 .feat-img img {
-  height: 100%;
-  object-position: center top;
-  transition: transform .65s ease;
+  height: 100%; object-position: center top;
+  transition: transform .5s ease;
 }
 .feat-card:hover .feat-img img { transform: scale(1.04); }
-
 .feat-info {
-  background: var(--oat);
-  padding: 48px 36px;
-  display: flex; flex-direction: column;
-  justify-content: flex-end;
-  position: relative;
-}
-.feat-info::before {
-  content: '';
-  position: absolute; top: 40px; left: 36px;
-  width: 24px; height: 1px;
-  background: var(--bark); opacity: .4;
-}
-
-.feat-tag {
-  display: inline-block;
-  font-size: 9px; letter-spacing: .18em;
-  text-transform: uppercase;
-  background: var(--bark); color: var(--oat);
-  padding: 4px 10px; margin-bottom: 14px;
-  align-self: flex-start;
+  padding: 36px 28px; display: flex;
+  flex-direction: column; justify-content: flex-end;
 }
 .feat-eyebrow {
-  font-size: 9px; letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--bark); opacity: .75;
-  margin-bottom: 14px; margin-top: 8px;
-}
-.feat-title {
-  font-family: var(--serif);
-  font-size: clamp(22px, 2.2vw, 34px);
-  font-weight: 400; line-height: 1.15;
-  color: var(--slate); margin-bottom: 18px;
-}
-.feat-desc {
-  font-size: 12px; line-height: 1.85;
-  color: var(--slate); opacity: .6;
-  margin-bottom: 28px;
-}
-.feat-features {
-  list-style: none; margin-bottom: 28px;
-}
-.feat-features li {
-  font-size: 11px; letter-spacing: .03em;
-  color: var(--slate); opacity: .55;
-  padding: 7px 0; border-top: 1px solid var(--sand);
-  line-height: 1.5;
-}
-.feat-price {
-  font-family: var(--serif);
-  font-size: 18px; font-weight: 400;
-  color: var(--slate); margin-bottom: 22px;
-}
-
-/* ════════════════════════════════
-   §5  THIS SEASON — new editorial
-   1 large left + 2 stacked right,
-   all full-bleed images
-════════════════════════════════ */
-.editorial-wrap {
-  padding: 0 80px;
-}
-
-.editorial {
-  padding: 0 80px 0;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 3px;
-  height: 640px;
-}
-
-.editorial-main {
-  position: relative; overflow: hidden;
-  display: flex; align-items: flex-end;
-  padding: 44px; cursor: pointer;
-  text-decoration: none;
-}
-.editorial-main img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center top;
-  transition: transform .7s ease;
-}
-.editorial-main:hover img { transform: scale(1.04); }
-.editorial-main::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(44,40,37,.6) 100%);
-  z-index: 1;
-}
-
-.editorial-secondary {
-  display: grid; grid-template-rows: 1fr 1fr; gap: 3px;
-}
-
-.editorial-card {
-  position: relative; overflow: hidden;
-  display: flex; align-items: flex-end;
-  padding: 28px 32px; cursor: pointer;
-  text-decoration: none;
-}
-.editorial-card img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center top;
-  transition: transform .7s ease;
-}
-.editorial-card:hover img { transform: scale(1.04); }
-.editorial-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 20%, rgba(44,40,37,.55) 100%);
-  z-index: 1;
-}
-
-.ed-label {
-  position: relative; z-index: 2; color: var(--oat);
-}
-.ed-eyebrow {
-  font-size: 9px; letter-spacing: .22em;
-  text-transform: uppercase; opacity: .72; margin-bottom: 8px;
-}
-.ed-title {
-  font-family: var(--serif);
-  font-size: 22px; font-weight: 400; line-height: 1.15;
-}
-.ed-title-lg {
-  font-family: var(--serif);
-  font-size: 38px; font-weight: 400; line-height: 1.05;
-}
-
-/* ════════════════════════════════
-   §6  THE EDIT — new design
-   3-col product grid on oat bg
-════════════════════════════════ */
-.grid-section {
-  padding: 80px 80px 100px;
-  background: var(--oat);
-}
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px; margin-top: 44px;
-}
-.product-card {
-  background: var(--white);
-  overflow: hidden; position: relative; cursor: pointer;
-}
-.product-card-img {
-  aspect-ratio: 3/4; overflow: hidden; position: relative;
-}
-.product-card-img img {
-  height: 100%; object-position: center top;
-  transition: transform .65s ease;
-}
-.product-card:hover .product-card-img img { transform: scale(1.04); }
-
-.quick-add {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: var(--slate); color: var(--oat);
-  text-align: center; padding: 13px;
-  font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
-  transform: translateY(100%); transition: transform .3s ease;
-}
-.product-card:hover .quick-add { transform: translateY(0); }
-
-.product-info { padding: 16px 18px 26px; }
-.product-name {
-  font-size: 12px; letter-spacing: .04em;
-  color: var(--slate); margin-bottom: 5px; line-height: 1.5;
-}
-.product-sub {
-  font-size: 10px; color: var(--bark);
-  opacity: .6; letter-spacing: .05em; margin-bottom: 8px;
-}
-.product-price {
-  font-family: var(--serif);
-  font-size: 15px; font-weight: 400; color: var(--slate);
-}
-
-/* ════════════════════════════════
-   §7  BRAND PHILOSOPHY — new design
-   Dark slate bg, centred quote +
-   vertical rule, no image
-════════════════════════════════ */
-.brand-philosophy {
-  background: var(--slate);
-  padding: 120px 80px;
-  text-align: center;
-}
-.brand-philosophy::before {
-  content: '';
-  display: block; width: 1px; height: 56px;
-  background: rgba(196,185,168,.25);
-  margin: 0 auto 60px;
-}
-.brand-philosophy-quote {
-  font-family: var(--serif);
-  font-size: clamp(22px, 2.8vw, 38px);
-  font-weight: 400; line-height: 1.5;
-  color: var(--oat); max-width: 800px;
-  margin: 0 auto 36px;
-  font-style: italic;
-}
-.brand-philosophy-attr {
-  font-size: 10px; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--stone);
-  opacity: .65;
-}
-
-/* ════════════════════════════════
-   §8  COMPLETE THE SET — new design
-   Simple text title (no full-img),
-   2 product cards below
-════════════════════════════════ */
-.completes-section {
-  padding: 100px 80px;
-  background: var(--oat);
-}
-.completes-header {
-  margin-bottom: 48px;
-}
-.completes-title {
-  font-family: var(--serif);
-  font-size: 30px; font-weight: 400;
-  letter-spacing: .02em; color: var(--slate);
+  font-size: 10px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gray);
+  font-family: var(--sans);
   margin-bottom: 10px;
 }
-.completes-sub {
-  font-size: 12px; color: var(--slate);
-  opacity: .5; letter-spacing: .04em;
-}
-
-.completes-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3px;
-}
-.complete-card {
-  background: var(--white);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3px; overflow: hidden;
-}
-.complete-img {
-  aspect-ratio: 3/4; overflow: hidden;
-}
-.complete-img img {
-  height: 100%; object-position: center top;
-  transition: transform .65s ease;
-}
-.complete-card:hover .complete-img img { transform: scale(1.04); }
-
-.complete-info {
-  padding: 36px 28px;
-  display: flex; flex-direction: column;
-  justify-content: flex-end;
-  background: var(--white);
-}
-.complete-eyebrow {
-  font-size: 9px; letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--bark); opacity: .65; margin-bottom: 12px;
-}
-.complete-name {
+.feat-title {
+  font-size: clamp(19px, 1.7vw, 26px);
+  font-weight: 400; line-height: 1.2;
   font-family: var(--serif);
-  font-size: 20px; font-weight: 400;
-  line-height: 1.2; color: var(--slate); margin-bottom: 10px;
+  color: var(--black); margin-bottom: 8px; letter-spacing: .02em;
 }
-.complete-tag {
-  font-size: 11px; color: var(--slate);
-  opacity: .5; line-height: 1.6; margin-bottom: 20px;
+.feat-highlight { font-size: 12px; color: var(--gray); margin-bottom: 12px; line-height: 1.5; font-family: var(--sans); font-style: italic; }
+.feat-desc { font-size: 13px; line-height: 1.75; color: var(--gray); margin-bottom: 18px; font-family: var(--sans); }
+.feat-features {
+  list-style: none; margin-bottom: 20px; display: flex; flex-direction: column; gap: 5px;
 }
-.complete-price {
-  font-family: var(--serif);
-  font-size: 17px; font-weight: 400; margin-bottom: 24px;
+.feat-features li {
+  font-size: 12px; color: var(--gray); padding-left: 12px; position: relative;
+  font-family: var(--sans);
 }
+.feat-features li::before { content: '–'; position: absolute; left: 0; }
+.feat-price { font-size: 16px; font-weight: 400; font-family: var(--serif); color: var(--black); margin-bottom: 20px; letter-spacing: .02em; }
 
-/* ════════════════════════════════
-   §9  TESTIMONIALS — Tessere style
-   3 columns on dark slate
-════════════════════════════════ */
-.testimonials {
-  padding: 110px 80px;
-  background: var(--slate);
-}
-.testimonials-label {
-  font-size: 10px; letter-spacing: .22em;
-  text-transform: uppercase; text-align: center;
-  color: var(--stone); opacity: .65;
-  margin-bottom: 72px;
-}
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 60px;
-}
-.testimonial-item {
-  border-top: 1px solid rgba(196,185,168,.18);
-  padding-top: 32px;
-}
-.t-text {
-  font-family: var(--serif);
-  font-size: 17px; font-weight: 400;
-  font-style: italic; line-height: 1.75;
-  color: var(--oat); margin-bottom: 24px;
-}
-.t-attr {
-  font-size: 10px; letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--stone); opacity: .65;
-}
-
-/* ════════════════════════════════
-   §10  MATERIAL & CRAFT — Tessere
-   placeholder: image left,
-   text right, specs grid
-════════════════════════════════ */
-.materials {
-  padding: 130px 80px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 90px; align-items: center;
-  background: var(--white);
-}
-.materials-img-wrap {
-  aspect-ratio: 4/5;
-  background: linear-gradient(140deg, #D6CBBA 0%, #BAAA98 50%, #AA9880 100%);
-  position: relative; overflow: hidden;
-}
-.materials-img-wrap::before {
-  content: '';
-  position: absolute; top: -12%; right: -12%;
-  width: 55%; height: 55%;
-  border-radius: 50%;
-  border: 1px solid rgba(253,252,249,.18);
-  z-index: 1; pointer-events: none;
-}
-.materials-img-wrap::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 45%;
-  background: linear-gradient(180deg, transparent, rgba(44,40,37,.2));
-  z-index: 1;
-}
-.fabric-badge {
-  position: absolute; bottom: 36px; left: 36px; right: 36px;
-  padding: 22px 26px;
-  background: rgba(253,252,249,.88);
-  backdrop-filter: blur(10px);
-  z-index: 2;
-}
-.fabric-badge-label {
-  font-size: 9px; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--bark); margin-bottom: 8px;
-}
-.fabric-badge-name {
-  font-family: var(--serif);
-  font-size: 17px; color: var(--slate); font-weight: 400;
-}
-
-.materials-content {}
-.mat-eyebrow {
-  font-size: 10px; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--bark);
-  margin-bottom: 28px;
-  display: flex; align-items: center; gap: 16px;
-}
-.mat-eyebrow::before {
-  content: ''; display: block;
-  width: 32px; height: 1px; background: var(--bark);
-}
-.mat-title {
-  font-family: var(--serif);
-  font-size: clamp(28px, 3.5vw, 46px);
-  font-weight: 400; line-height: 1.12;
-  color: var(--slate); margin-bottom: 28px;
-}
-.mat-title em { font-style: italic; color: var(--bark); }
-
-.mat-body {
-  font-size: 14px; line-height: 1.95;
-  color: var(--slate); opacity: .62;
-  margin-bottom: 48px; max-width: 400px;
-}
-.mat-specs {
+/* ── §4 BARELY ZERO SPOTLIGHT ── */
+.spotlight {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 24px; margin-bottom: 48px;
+  min-height: 620px; background: var(--bg);
 }
-.spec-item { border-top: 1px solid var(--sand); padding-top: 18px; }
-.spec-value {
+.spotlight-text {
+  padding: 72px 56px; display: flex;
+  flex-direction: column; justify-content: center;
+}
+.spotlight-eyebrow {
+  font-size: 11px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--gray);
+  font-family: var(--sans);
+  margin-bottom: 14px;
+}
+.spotlight-title {
+  font-size: clamp(30px, 3.2vw, 46px); font-weight: 400;
   font-family: var(--serif);
-  font-size: 26px; font-weight: 400;
-  color: var(--slate); margin-bottom: 5px; line-height: 1;
+  line-height: 1.1; color: var(--black); margin-bottom: 12px;
+  letter-spacing: .02em;
 }
-.spec-label {
-  font-size: 10px; letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--bark); opacity: .65; line-height: 1.4;
+.spotlight-title em { font-style: italic; }
+.spotlight-tagline { font-size: 14px; color: var(--gray); margin-bottom: 16px; font-family: var(--sans); font-style: italic; }
+.spotlight-body { font-size: 14px; line-height: 1.75; color: var(--gray); font-family: var(--sans); max-width: 360px; margin-bottom: 24px; }
+.spotlight-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.spotlight-tag {
+  font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--black); background: var(--white);
+  padding: 5px 12px; border: 1px solid var(--border);
+  font-family: var(--sans);
 }
-.mat-placeholder-note {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 10px; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--bark); opacity: .45;
-  margin-bottom: 24px;
-}
-.mat-placeholder-note::before {
-  content: ''; display: block;
-  width: 20px; height: 1px; background: currentColor;
-}
+.spotlight-img { overflow: hidden; }
+.spotlight-img img { height: 100%; object-position: center; }
 
-/* ════════════════════════════════
-   §11  IN THE WORLD — 4-col square grid
-   Instagram-feed style, no overlays
-════════════════════════════════ */
-.in-world {
-  padding: 100px 0 0;
-  background: var(--white);
-}
-.world-header {
-  padding: 0 80px;
-  margin-bottom: 48px;
-}
-.world-sub {
-  font-size: 12px; color: var(--slate);
-  opacity: .5; margin-top: 10px; letter-spacing: .04em;
-}
-.world-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 3px;
-}
-.world-cell { overflow: hidden; }
-.world-cell img {
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  object-position: center top;
-  transition: transform .65s ease;
-}
-.world-cell:hover img { transform: scale(1.04); }
+/* ── §5 EVERYDAY ESSENTIALS ── */
+.essentials-section { padding: 56px 48px; }
 
-.world-follow {
-  display: flex; justify-content: center;
-  padding: 40px 0 100px;
+/* Variant B — overlay label on image */
+.ess-columns { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.ess-col { display: block; cursor: pointer; overflow: hidden; position: relative; text-decoration: none; }
+.ess-col-img { aspect-ratio: 3/4; overflow: hidden; position: relative; }
+.ess-col-img img { height: 100%; object-position: center top; transition: transform .55s ease; }
+.ess-col:hover .ess-col-img img { transform: scale(1.04); }
+.ess-col-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
+  pointer-events: none;
 }
+.ess-col-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px 24px 28px;
+  z-index: 2; color: #fff;
+  pointer-events: none;
+}
+.ess-col-eyebrow { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; opacity: .75; margin-bottom: 6px; font-family: var(--sans); }
+.ess-col-name { font-size: clamp(18px, 1.8vw, 24px); font-weight: 400; font-family: var(--serif); line-height: 1.2; letter-spacing: .02em; margin-bottom: 10px; }
+.ess-col-link {
+  font-size: 11px; font-family: var(--sans); font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+  border-bottom: 1px solid rgba(255,255,255,.45);
+  padding-bottom: 2px; display: inline-block;
+  transition: color .2s, border-color .2s;
+}
+.ess-col:hover .ess-col-link { color: #fff; border-color: rgba(255,255,255,.85); }
 
-/* ════════════════════════════════
-   §12  PRESS (kept from new design)
-════════════════════════════════ */
-.press {
-  padding: 60px 80px 70px;
-  background: var(--white);
-  border-top: 1px solid var(--sand);
+/* ── §6 THE EDIT ── */
+.the-edit { padding: 56px 48px; border-top: 1px solid var(--border); }
+.edit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.product-card { overflow: hidden; cursor: pointer; }
+.product-card-img { aspect-ratio: 3/4; overflow: hidden; position: relative; background: var(--bg); }
+.product-card-img img { height: 100%; object-position: center top; transition: transform .5s ease; }
+.product-card:hover .product-card-img img { transform: scale(1.04); }
+.quick-add {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,.85); color: #fff;
+  text-align: center; padding: 12px;
+  font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  transform: translateY(100%); transition: transform .25s ease;
 }
-.press-label {
-  font-size: 9px; letter-spacing: .22em;
-  text-transform: uppercase; text-align: center;
-  color: var(--slate); opacity: .32; margin-bottom: 36px;
-}
-.press-logos {
-  display: flex; justify-content: center;
-  gap: 56px; align-items: center; flex-wrap: wrap;
-}
-.press-logo {
-  height: 20px; object-fit: contain;
-  filter: grayscale(100%); opacity: .22;
-  transition: opacity .25s;
-}
-.press-logo:hover { opacity: .5; }
+.product-card:hover .quick-add { transform: translateY(0); }
+.product-info { padding: 12px 0 20px; }
+.product-name { font-size: 15px; font-weight: 400; font-family: var(--serif); color: var(--black); margin-bottom: 3px; line-height: 1.4; letter-spacing: .02em; }
+.product-sub { font-size: 12px; color: var(--gray); margin-bottom: 6px; line-height: 1.5; font-family: var(--sans); font-style: italic; }
+.product-price { font-size: 15px; font-weight: 400; font-family: var(--serif); color: var(--black); letter-spacing: .02em; }
 
-/* ════════════════════════════════
-   §13  FOOTER — original design
-════════════════════════════════ */
-footer {
-  background: var(--slate);
-  color: var(--oat);
-  padding: 88px 80px 44px;
+/* ── §7 CUSTOMER REVIEWS ── */
+.reviews {
+  padding: 72px 48px; background: var(--bg);
+  text-align: center; border-top: 1px solid var(--border);
 }
-.footer-top {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 60px; margin-bottom: 72px;
-  padding-bottom: 60px;
-  border-bottom: 1px solid rgba(196,185,168,.1);
+.reviews-label {
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 44px; font-family: var(--sans);
 }
-.footer-brand {
-  font-family: var(--serif);
-  font-size: 22px; font-weight: 400;
-  letter-spacing: .26em; text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.footer-tagline {
-  font-size: 12px; line-height: 1.85;
-  opacity: .35; max-width: 200px;
-}
-.footer-col-title {
-  font-size: 9px; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--stone);
-  margin-bottom: 24px;
-}
-.footer-col a {
-  display: block; font-size: 12px; opacity: .42;
-  margin-bottom: 12px; letter-spacing: .04em;
-  transition: opacity .2s;
-}
-.footer-col a:hover { opacity: .85; }
-.footer-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-}
-.footer-copy { font-size: 10px; opacity: .24; letter-spacing: .06em; }
-.footer-social { display: flex; gap: 22px; }
-.footer-social a {
-  font-size: 10px; letter-spacing: .14em;
-  text-transform: uppercase; opacity: .36;
-  transition: opacity .2s;
-}
-.footer-social a:hover { opacity: .85; }
-
-/* ════════════════════════════════
-   ANIMATIONS
-════════════════════════════════ */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
+.reviews-label::before, .reviews-label::after { display: none; }
+.review-slider { max-width: 720px; margin: 0 auto; position: relative; }
+.review-slide { display: none; animation: fadeReview .35s ease both; }
+.review-slide.active { display: block; }
+@keyframes fadeReview {
+  from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.hero-eyebrow { animation: fadeUp .8s ease .1s both; }
-.hero-title   { animation: fadeUp .8s ease .3s both; }
-.hero-body    { animation: fadeUp .8s ease .5s both; }
-.btn-light    { animation: fadeUp .8s ease .65s both; }
+.review-stars { color: var(--black); font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; }
+.review-text {
+  font-size: clamp(17px, 2vw, 23px); font-style: italic;
+  font-family: var(--serif);
+  line-height: 1.7; color: var(--black); margin-bottom: 20px;
+  letter-spacing: .01em; font-weight: 400;
+}
+.review-author { font-size: 12px; color: var(--gray); letter-spacing: .06em; font-family: var(--sans); }
+.review-nav { display: flex; justify-content: center; gap: 8px; margin-top: 36px; }
+.review-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--border); border: none; cursor: pointer; padding: 0; transition: background .2s;
+}
+.review-dot.active { background: var(--black); }
+.review-arrows { display: flex; justify-content: center; gap: 10px; margin-top: 16px; }
+.review-arrow {
+  background: none; border: 1px solid var(--border);
+  color: var(--black); width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 14px; transition: border-color .2s;
+}
+.review-arrow:hover { border-color: var(--black); }
+
+/* ── §8 IN THE WORLD ── */
+.in-world { padding: 56px 0 0; }
+.world-header { padding: 0 48px; margin-bottom: 28px; }
+.world-sub { font-size: 13px; color: var(--gray); margin-top: 4px; }
+.world-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.world-cell { overflow: hidden; }
+.world-cell img {
+  aspect-ratio: 1/1; object-fit: cover; object-position: center top;
+  transition: transform .5s ease;
+}
+.world-cell:hover img { transform: scale(1.04); }
+.world-follow { display: flex; justify-content: center; padding: 32px 0 56px; }
+
+/* ── PRESS ── */
+.press {
+  padding: 44px 48px 52px; background: var(--white);
+  border-top: 1px solid var(--border);
+}
+.press-label {
+  font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  text-align: center; color: var(--gray); margin-bottom: 24px;
+}
+.press-logos { display: flex; justify-content: center; gap: 48px; align-items: center; flex-wrap: wrap; }
+.press-logo {
+  height: 20px; object-fit: contain;
+  filter: grayscale(100%); opacity: .3; transition: opacity .2s;
+}
+.press-logo:hover { opacity: .6; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black); color: #fff;
+  padding: 60px 48px 36px;
+}
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px; padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.footer-brand { font-size: 18px; font-weight: 400; font-family: var(--serif); letter-spacing: .22em; text-transform: uppercase; margin-bottom: 12px; }
+.footer-tagline { font-size: 13px; line-height: 1.65; opacity: .4; max-width: 200px; font-family: var(--sans); }
+.footer-col-title { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; opacity: .35; margin-bottom: 18px; font-family: var(--sans); }
+.footer-col a { display: block; font-size: 13px; opacity: .55; margin-bottom: 10px; transition: opacity .15s; font-family: var(--sans); }
+.footer-col a:hover { opacity: 1; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: 11px; opacity: .3; }
+.footer-social { display: flex; gap: 20px; }
+.footer-social a { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; opacity: .4; transition: opacity .15s; }
+.footer-social a:hover { opacity: 1; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow { animation: fadeUp .5s ease .1s both; }
+.hero-title   { animation: fadeUp .5s ease .2s both; }
+.hero-body    { animation: fadeUp .5s ease .3s both; }
+.btn-light    { animation: fadeUp .5s ease .45s both; }
 </style>
 </head>
 <body>
@@ -854,7 +436,7 @@ footer {
 <div class="ann">Complimentary U.S. shipping on orders above $99</div>
 
 <!-- ══════════════════════════════════════
-  §1  NAV — new design
+  NAV
 ══════════════════════════════════════ -->
 <nav>
   <div class="nav-left">
@@ -877,8 +459,7 @@ footer {
 </nav>
 
 <!-- ══════════════════════════════════════
-  §2  HERO — original design
-  Full-width image, copy overlaid bottom-left
+  §1  HERO
 ══════════════════════════════════════ -->
 <section class="hero-orig">
   <img
@@ -894,7 +475,8 @@ footer {
       Engineered for invisible comfort. Designed for the space between —
       where you stop noticing what you're wearing and simply live.
     </p>
-    <a href="/bras" class="btn-outline btn-light">Shop Bras</a>
+    <a href="/bras" class="btn-outline btn-light">Shop Now</a>
+
   </div>
   <div class="scroll-hint">
     <span>Scroll</span>
@@ -903,33 +485,18 @@ footer {
 </section>
 
 <!-- ══════════════════════════════════════
-  §3  SHORT PARAGRAPH — new design
+  §3  MUST HAVES
 ══════════════════════════════════════ -->
-<section class="philosophy">
-  <p class="philosophy-quote">
-    We believe the best intimates are the ones
-    you <em>forget you're wearing</em> — and the ones
-    you reach for again and again, by choice.
-  </p>
-  <div class="philosophy-pills">
-    <span class="pill">CloudFit Nylon</span>
-    <span class="pill">Wire-free construction</span>
-    <span class="pill">Small-batch production</span>
-    <span class="pill">Direct to you</span>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-  §4  FEATURED — new 2-col spotlight
-  Strap Bra + Scallop Bra
-══════════════════════════════════════ -->
-<div class="featured-wrap">
+<div class="must-haves">
   <div class="section-header">
-    <h2 class="section-title">Featured</h2>
+    <div>
+      <h2 class="section-title">Must Haves</h2>
+      <p class="section-sub">Our two most-loved styles, side by side.</p>
+    </div>
     <a href="/bras" class="link-arrow">All Bras →</a>
   </div>
 
-  <div class="featured-grid">
+  <div class="must-haves-grid">
 
     <!-- Strap Bra -->
     <div class="feat-card">
@@ -942,6 +509,7 @@ footer {
       <div class="feat-info">
         <p class="feat-eyebrow">Barely Zero · Strap Bra</p>
         <h2 class="feat-title">The original.<br>Still the standard.</h2>
+        <p class="feat-highlight">Wire-free · Seamless · CloudFit Nylon</p>
         <p class="feat-desc">A bra worn for its absence rather than its presence. Made from CloudFit nylon, developed to move with the body without binding.</p>
         <ul class="feat-features">
           <li>CloudFit nylon — ultra-elastic, breathable</li>
@@ -953,7 +521,7 @@ footer {
       </div>
     </div>
 
-    <!-- Scallop Bra -->
+    <!-- Scallop Bra (no "New" tag) -->
     <div class="feat-card">
       <div class="feat-img">
         <img
@@ -962,9 +530,9 @@ footer {
         >
       </div>
       <div class="feat-info">
-        <span class="feat-tag">New</span>
         <p class="feat-eyebrow">Barely Zero · Scallop</p>
         <h2 class="feat-title">Structure<br>without weight.</h2>
+        <p class="feat-highlight">Fixed molded cups · Pull-on · No clasp</p>
         <p class="feat-desc">A scalloped V-neckline with fixed molded cups. Pull-on, no clasps, no underwire. Invisible under clothing.</p>
         <ul class="feat-features">
           <li>Scalloped V-neckline — cups hold all day</li>
@@ -980,241 +548,233 @@ footer {
 </div>
 
 <!-- ══════════════════════════════════════
-  §5  THIS SEASON — Tessere editorial
-  Barely Zero (large) + Pure Comfort + Briefs
+  §4  BARELY ZERO SPOTLIGHT
+  Text left, image right
 ══════════════════════════════════════ -->
-<div class="editorial-wrap" style="margin-top: 100px;">
-  <div class="section-header">
-    <h2 class="section-title">This Season</h2>
-    <a href="/collections/all" class="link-arrow">View All →</a>
-  </div>
-</div>
-
-<div class="editorial" style="margin-bottom: 100px;">
-
-  <a href="/bras" class="editorial-main">
-    <img
-      src="https://neiwai.life/cdn/shop/files/2025-08-28NEIWAI167441.jpg?v=1762145917&width=1600"
-      alt="Barely Zero — Core Collection"
-    >
-    <div class="ed-label">
-      <div class="ed-eyebrow">Core Collection</div>
-      <div class="ed-title-lg">Barely<br><em style="font-style:italic">Zero</em></div>
+<section class="spotlight">
+  <div class="spotlight-text" style="justify-content:space-between;">
+    <div>
+      <p class="spotlight-eyebrow">Our Spotlight Collection</p>
+      <h2 class="spotlight-title">Barely Zero,<br><em>Barely There.</em></h2>
+      <p class="spotlight-tagline">The collection that started it all.</p>
+      <p class="spotlight-body">
+        Discover our best-selling Barely Zero collection — iconic, size-inclusive essentials that redefine everyday comfort. Seamless. Stretchy. Effortlessly soft.
+      </p>
+      <div class="spotlight-tags">
+        <span class="spotlight-tag">Seamless</span>
+        <span class="spotlight-tag">Stretchy</span>
+        <span class="spotlight-tag">Size-inclusive</span>
+      </div>
     </div>
-  </a>
-
-  <div class="editorial-secondary">
-
-    <a href="/collections/pure-comfort" class="editorial-card">
-      <img
-        src="https://neiwai.life/cdn/shop/files/20230408-NEIWAI7738.jpg?v=1694803212&width=800"
-        alt="Pure Comfort"
-      >
-      <div class="ed-label">
-        <div class="ed-eyebrow">New In</div>
-        <div class="ed-title">Pure<br>Comfort</div>
-      </div>
-    </a>
-
-    <a href="/briefs" class="editorial-card">
-      <img
-        src="https://neiwai.life/cdn/shop/files/20210111NEIWAI333371.jpg?v=1736536548&width=800"
-        alt="Briefs"
-      >
-      <div class="ed-label">
-        <div class="ed-eyebrow">Always Essential</div>
-        <div class="ed-title">The<br>Briefs</div>
-      </div>
-    </a>
-
+    <a href="/collections/barely-zero" class="btn-text">Discover More →</a>
   </div>
-</div>
+  <div class="spotlight-img">
+    <img
+      src="https://neiwai.life/cdn/shop/files/2025-08-28NEIWAI16364_2087098d-adca-42e7-89da-ef4c3e9f3af5.jpg?v=1762149203&width=1600"
+      alt="Barely Zero Collection"
+    >
+  </div>
+</section>
 
 <!-- ══════════════════════════════════════
-  §6  THE EDIT — new 3-col grid
+  §5  EVERYDAY ESSENTIALS
+  A/B test — mosaic vs. portrait columns
 ══════════════════════════════════════ -->
-<section class="grid-section">
-  <div class="section-header" style="padding:0;">
-    <h2 class="section-title">The Edit</h2>
-    <a href="/collections/all" class="link-arrow">View all →</a>
+<section class="essentials-section">
+  <div class="section-header" style="align-items:flex-end;">
+    <div>
+      <h2 class="section-title">Everyday Essentials</h2>
+      <p class="section-sub">Three collections, one wardrobe foundation.</p>
+    </div>
+    <a href="/collections/all" class="link-arrow">View All →</a>
   </div>
 
-  <div class="product-grid">
+  <div class="ess-columns">
+
+    <a href="/briefs/barely-zero" class="ess-col">
+      <div class="ess-col-img">
+        <img
+          src="https://neiwai.life/cdn/shop/files/20210111NEIWAI333371.jpg?v=1736536548&width=800"
+          alt="Barely Zero Briefs"
+        >
+        <div class="ess-col-overlay">
+          <div class="ess-col-eyebrow">Collection</div>
+          <div class="ess-col-name">Barely Zero<br><em style="font-style:italic">Briefs</em></div>
+          <span class="ess-col-link">Shop Now →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/briefs/multi-pack" class="ess-col">
+      <div class="ess-col-img">
+        <img
+          src="https://neiwai.life/cdn/shop/files/Copyof20240531_65576-min_9ceae961-9c14-4def-b14a-858a29288c46.jpg?v=1728005978&width=800"
+          alt="Multi-pack Briefs"
+        >
+        <div class="ess-col-overlay">
+          <div class="ess-col-eyebrow">Value Set</div>
+          <div class="ess-col-name">Multi-pack<br><em style="font-style:italic">Briefs</em></div>
+          <span class="ess-col-link">Shop Now →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="/leggings" class="ess-col">
+      <div class="ess-col-img">
+        <img
+          src="https://neiwai.life/cdn/shop/files/20211217NEIWAI9705_1.jpg?v=1729629132&width=800"
+          alt="Barely Zero Leggings"
+        >
+        <div class="ess-col-overlay">
+          <div class="ess-col-eyebrow">New In</div>
+          <div class="ess-col-name">Barely Zero<br><em style="font-style:italic">Leggings</em></div>
+          <span class="ess-col-link">Shop Now →</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  BRAND PHILOSOPHY
+══════════════════════════════════════ -->
+<section class="philosophy">
+  <p class="philosophy-quote">
+    We believe the best intimates are the ones
+    you <em>forget you're wearing</em> — and the ones
+    you reach for again and again, by choice.
+  </p>
+  <div class="philosophy-pills">
+    <span class="pill">CloudFit Nylon</span>
+    <span class="pill">Wire-free construction</span>
+    <span class="pill">Size-inclusive</span>
+    <span class="pill">Direct to you</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  §6  THE EDIT — 4 products
+══════════════════════════════════════ -->
+<section class="the-edit">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">The Edit</h2>
+      <p class="section-sub">Four styles worth knowing.</p>
+    </div>
+    <a href="https://neiwai.life/collections/best-sellers" class="link-arrow">View All →</a>
+  </div>
+
+  <div class="edit-grid">
+
+    <!-- 1. Essential Bandeau Bra -->
     <div class="product-card">
       <div class="product-card-img">
         <img
-          src="https://neiwai.life/cdn/shop/files/0216NEIWAI32653.jpg?v=1762136724&width=800"
-          alt="Barely Zero Anchored Cup Strap Bra"
+          src="https://neiwai.life/cdn/shop/files/251116neiwai22654.jpg?v=1771356782&width=1445"
+          alt="Essential Bandeau Bra"
         >
         <div class="quick-add">Select Size</div>
       </div>
       <div class="product-info">
-        <div class="product-name">Barely Zero Anchored Cup Strap Bra</div>
-        <div class="product-sub">Adaptive Fit Technology</div>
-        <div class="product-price">$39</div>
+        <div class="product-name">Essential Bandeau Bra</div>
+        <div class="product-sub">Strapless comfort · Anti-slip silicone band</div>
+        <div class="product-price">$42</div>
       </div>
     </div>
 
+    <!-- 2. Pure Comfort Triangle Bra -->
     <div class="product-card">
       <div class="product-card-img">
         <img
-          src="https://neiwai.life/cdn/shop/files/NW221WU11103_BarelyZeroFixedCupClasp_Caramel_OM_Side_5_1.jpg?v=1737920488&width=800"
-          alt="Barely Zero Curvy Clasp Bra"
+          src="https://neiwai.life/cdn/shop/files/NO261WU1108_NO261WU1305_3_a7430362-c197-4d0b-aa9c-10be83c22654.jpg?v=1769454776&width=1445"
+          alt="Pure Comfort Triangle Bra"
         >
         <div class="quick-add">Select Size</div>
       </div>
       <div class="product-info">
-        <div class="product-name">Barely Zero Curvy Clasp Bra</div>
-        <div class="product-sub">Fuller bust support, still barely there</div>
+        <div class="product-name">Pure Comfort Triangle Bra</div>
+        <div class="product-sub">TENCEL Modal + Supima cotton · Ultra-soft</div>
+        <div class="product-price">$38</div>
+      </div>
+    </div>
+
+    <!-- 3. Featherlight Push Up Bra -->
+    <div class="product-card">
+      <div class="product-card-img">
+        <img
+          src="https://neiwai.life/cdn/shop/files/7_2NEIWAIOrange24010.jpg?v=1756252947&width=1445"
+          alt="Featherlight Push Up Bra"
+        >
+        <div class="quick-add">Select Size</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Featherlight Push Up Bra</div>
+        <div class="product-sub">Natural lift · Foam-free · Barely there feel</div>
         <div class="product-price">$49</div>
       </div>
     </div>
 
+    <!-- 4. Barely Zero Camisole -->
     <div class="product-card">
       <div class="product-card-img">
         <img
-          src="https://neiwai.life/cdn/shop/files/20211217NEIWAI9705_1.jpg?v=1729629132&width=800"
-          alt="Barely Zero Flow Leggings"
+          src="https://neiwai.life/cdn/shop/files/5.26_0803.jpg?v=1762136811&width=1445"
+          alt="Barely Zero Camisole"
         >
         <div class="quick-add">Select Size</div>
       </div>
       <div class="product-info">
-        <div class="product-name">Barely Zero Flow Leggings</div>
-        <div class="product-sub">Compression without constriction</div>
-        <div class="product-price">$39</div>
+        <div class="product-name">Barely Zero Camisole</div>
+        <div class="product-sub">Built-in shelf bra · Seamless edges · CloudFit</div>
+        <div class="product-price">$45</div>
       </div>
     </div>
+
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-  §7  BRAND PHILOSOPHY — new design
-  Dark background, centred italic quote
+  §7  CUSTOMER REVIEWS — single slide
 ══════════════════════════════════════ -->
-<section class="brand-philosophy">
-  <p class="brand-philosophy-quote">
-    "The space between inner comfort and outer beauty —
-    that is where NEIWAI lives."
-  </p>
-  <span class="brand-philosophy-attr">Brand Philosophy</span>
-</section>
+<section class="reviews">
+  <p class="reviews-label">What they're saying</p>
 
-<!-- ══════════════════════════════════════
-  §8  COMPLETE THE SET — new design
-  Clean title, no full-width image,
-  2 product cards
-══════════════════════════════════════ -->
-<section class="completes-section">
-  <div class="completes-header section-header">
-    <div>
-      <h2 class="completes-title">Complete the Set</h2>
-      <p class="completes-sub">Everything you need. Nothing you don't.</p>
-    </div>
-    <a href="/briefs" class="link-arrow">Shop All →</a>
-  </div>
+  <div class="review-slider">
 
-  <div class="completes-grid">
-    <div class="complete-card">
-      <div class="complete-img">
-        <img
-          src="https://neiwai.life/cdn/shop/files/20210111NEIWAI333371.jpg?v=1736536548&width=800"
-          alt="Barely Zero Low Waist Brief"
-        >
-      </div>
-      <div class="complete-info">
-        <div class="complete-eyebrow">Briefs</div>
-        <div class="complete-name">Barely Zero Low Waist Brief</div>
-        <div class="complete-tag">The brief that disappears.</div>
-        <div class="complete-price">$15</div>
-        <a href="/briefs/barely-zero-low-waist-brief" class="btn-outline btn-dark">Shop Brief</a>
-      </div>
+    <div class="review-slide active">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I put it on and forgot about it entirely. By the end of the day I realized — that absence of awareness is the whole point."</p>
+      <span class="review-author">— Loni &nbsp;·&nbsp; Verified Buyer</span>
     </div>
 
-    <div class="complete-card">
-      <div class="complete-img">
-        <img
-          src="https://neiwai.life/cdn/shop/files/20211217NEIWAI9705_1.jpg?v=1729629132&width=800"
-          alt="Barely Zero Flow Leggings"
-        >
-      </div>
-      <div class="complete-info">
-        <div class="complete-eyebrow">Leggings</div>
-        <div class="complete-name">Barely Zero Flow Leggings</div>
-        <div class="complete-tag">Compression without constriction.</div>
-        <div class="complete-price">$39</div>
-        <a href="/leggings/barely-zero-flow-leggings" class="btn-outline btn-dark">Shop Leggings</a>
-      </div>
+    <div class="review-slide">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"True to its name, the Barely Zero bralette is the next best thing to nothing. It's become my everyday go-to — I've stopped buying intimates anywhere else."</p>
+      <span class="review-author">— W.L. &nbsp;·&nbsp; New York &nbsp;·&nbsp; Verified Buyer</span>
+    </div>
+
+    <div class="review-slide">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The Barely Zero line is my dream come true. Actually seamless — no lines or weird shapes even under a tight top. It perfectly hugs your body and I love it."</p>
+      <span class="review-author">— Sarah M. &nbsp;·&nbsp; Los Angeles &nbsp;·&nbsp; Verified Buyer</span>
+    </div>
+
+    <div class="review-nav">
+      <button class="review-dot active" onclick="goToReview(0)"></button>
+      <button class="review-dot" onclick="goToReview(1)"></button>
+      <button class="review-dot" onclick="goToReview(2)"></button>
+    </div>
+
+    <div class="review-arrows">
+      <button class="review-arrow" onclick="prevReview()">←</button>
+      <button class="review-arrow" onclick="nextReview()">→</button>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-  §9  TESTIMONIALS — Tessere style
-  3-col dark slate, placeholder copy
-══════════════════════════════════════ -->
-<section class="testimonials">
-  <p class="testimonials-label">What stays with them</p>
-  <div class="testimonials-grid">
-    <div class="testimonial-item">
-      <p class="t-text">"I put it on and forgot about it entirely. By the end of the day I realized — that absence of awareness is the whole point."</p>
-      <span class="t-attr">— Loni</span>
-    </div>
-    <div class="testimonial-item">
-      <p class="t-text">"Three years in, and it's still the first thing I reach for. I've stopped buying intimates anywhere else."</p>
-      <span class="t-attr">— W.L. · New York · 41</span>
-    </div>
-    <div class="testimonial-item">
-      <p class="t-text">"The quality is completely out of proportion with the price — in the best possible way."</p>
-      <span class="t-attr">— C.M. · London · 37</span>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-  §10  MATERIAL & CRAFT — Tessere placeholder
-  Image left + content right
-══════════════════════════════════════ -->
-<section class="materials">
-  <div class="materials-img-wrap">
-    <div class="fabric-badge">
-      <div class="fabric-badge-label">Material Origin — Placeholder</div>
-      <div class="fabric-badge-name">Long-staple cotton · 38mm fibre length</div>
-    </div>
-  </div>
-  <div class="materials-content">
-    <p class="mat-placeholder-note">Content coming soon</p>
-    <div class="mat-eyebrow">Material & Craft</div>
-    <h2 class="mat-title">
-      Not better fabric.<br>
-      <em>Entirely different.</em>
-    </h2>
-    <p class="mat-body">
-      Placeholder — your material story goes here. Share where the fabric comes from, what makes it different, and what the wearer will feel from day one. This section is designed to carry long-form trust-building copy.
-    </p>
-    <div class="mat-specs">
-      <div class="spec-item">
-        <div class="spec-value">—</div>
-        <div class="spec-label">Fibre length</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-value">—</div>
-        <div class="spec-label">Certification</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-value">—</div>
-        <div class="spec-label">Production method</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-value">—</div>
-        <div class="spec-label">Wash durability</div>
-      </div>
-    </div>
-    <a href="#" class="btn-outline btn-dark">Trace Our Materials</a>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-  §11  IN THE WORLD — 4-col square grid
+  §8  IN THE WORLD
 ══════════════════════════════════════ -->
 <section class="in-world">
   <div class="world-header section-header">
@@ -1253,13 +813,11 @@ footer {
   </div>
 
   <div class="world-follow">
-    <a href="https://instagram.com/neiwaiofficial" class="btn-outline btn-dark">Follow on Instagram</a>
+    <a href="https://instagram.com/neiwaiofficial" class="btn-solid">Follow on Instagram</a>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-  PRESS
-══════════════════════════════════════ -->
+<!-- PRESS -->
 <div class="press">
   <p class="press-label">Recognized by</p>
   <div class="press-logos">
@@ -1270,9 +828,7 @@ footer {
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-  §12  FOOTER — original design
-══════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div>
@@ -1284,7 +840,7 @@ footer {
       <a href="https://neiwai.life/pages/our-story">Our Philosophy</a>
       <a href="/our-world/atelier">The Atelier</a>
       <a href="/our-world/journal">Journal</a>
-      <a href="https://neiwai.life/pages/press">Careers</a>
+      <a href="https://neiwai.life/pages/press">Press</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Customer Care</div>
@@ -1313,6 +869,26 @@ footer {
     </div>
   </div>
 </footer>
+
+<script>
+/* ─── Review slider ─── */
+let currentReview = 0;
+const slides = document.querySelectorAll('.review-slide');
+const dots   = document.querySelectorAll('.review-dot');
+
+function goToReview(n) {
+  slides[currentReview].classList.remove('active');
+  dots[currentReview].classList.remove('active');
+  currentReview = (n + slides.length) % slides.length;
+  slides[currentReview].classList.add('active');
+  dots[currentReview].classList.add('active');
+}
+function nextReview() { goToReview(currentReview + 1); }
+function prevReview() { goToReview(currentReview - 1); }
+
+/* Auto-advance every 6s */
+setInterval(nextReview, 6000);
+</script>
 
 </body>
 </html>
